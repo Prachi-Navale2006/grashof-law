@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Four Bar Mechanism Identifier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 350px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .input-box {
+            margin: 10px 0;
+        }
+
+        input, select {
+            width: 90%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 5px #667eea;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background: #667eea;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .result {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #444;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Mechanism Identifier</h2>
+
+    <div class="input-box">
+        <input type="number" placeholder="Link 1 Length" id="l1">
+    </div>
+
+    <div class="input-box">
+        <input type="number" placeholder="Link 2 Length" id="l2">
+    </div>
+
+    <div class="input-box">
+        <input type="number" placeholder="Link 3 Length" id="l3">
+    </div>
+
+    <div class="input-box">
+        <input type="number" placeholder="Link 4 Length" id="l4">
+    </div>
+
+    <div class="input-box">
+        <select id="fixed">
+            <option value="">Select Fixed Link</option>
+            <option value="1">Link 1</option>
+            <option value="2">Link 2</option>
+            <option value="3">Link 3</option>
+            <option value="4">Link 4</option>
+        </select>
+    </div>
+
+    <button onclick="identify()">Identify</button>
+
+    <div class="result" id="output"></div>
+</div>
+
+<script>
+function identify() {
+    let links = [
+        parseFloat(document.getElementById("l1").value),
+        parseFloat(document.getElementById("l2").value),
+        parseFloat(document.getElementById("l3").value),
+        parseFloat(document.getElementById("l4").value)
+    ];
+
+    let fixed = parseInt(document.getElementById("fixed").value);
+
+    if (links.includes(NaN) || !fixed) {
+        document.getElementById("output").innerText = "Please fill all inputs!";
+        return;
+    }
+
+    let sorted = [...links].sort((a,b)=>a-b);
+    let S = sorted[0];
+    let L = sorted[3];
+    let P = sorted[1];
+    let Q = sorted[2];
+
+    let result = "";
+
+    if (S + L <= P + Q) {
+        let shortestIndex = links.indexOf(S) + 1;
+
+        if (fixed === shortestIndex) {
+            result = "Double Crank Mechanism";
+        } else if (
+            Math.abs(fixed - shortestIndex) === 1 ||
+            Math.abs(fixed - shortestIndex) === 3
+        ) {
+            result = "Crank-Rocker Mechanism";
+        } else {
+            result = "Double Rocker Mechanism";
+        }
+
+    } else {
+        result = "Double Rocker Mechanism (Non-Grashof)";
+    }
+
+    document.getElementById("output").innerText = result;
+}
+</script>
+
+</body>
+</html>
