@@ -1,108 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Four Bar Mechanism Identifier</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+<meta charset="UTF-8">
+<title>Mechanism Identifier</title>
 
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            width: 350px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            text-align: center;
-        }
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #36d1dc, #5b86e5);
+    min-height: 100vh;
+    margin: 0;
+}
 
-        h2 {
-            margin-bottom: 20px;
-            color: #333;
-        }
+/* Center main container */
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+}
 
-        .input-box {
-            margin: 10px 0;
-        }
+.container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    width: 380px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
 
-        input, select {
-            width: 90%;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            outline: none;
-            transition: 0.3s;
-        }
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
 
-        input:focus, select:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 5px #667eea;
-        }
+/* Row layout */
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 12px 0;
+}
 
-        button {
-            margin-top: 15px;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            background: #667eea;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+label {
+    font-weight: bold;
+    color: #444;
+}
 
-        button:hover {
-            background: #5a67d8;
-        }
+input, select {
+    width: 60%;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: 0.3s;
+}
 
-        .result {
-            margin-top: 15px;
-            font-weight: bold;
-            color: #444;
-        }
-    </style>
+input:focus, select:focus {
+    border-color: #5b86e5;
+    box-shadow: 0 0 5px #5b86e5;
+}
+
+button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background: #5b86e5;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #4a6fd1;
+}
+
+.result {
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+}
+
+/* NEW SECTION STYLE */
+.info-section {
+    margin-top: 25px;
+    background: white;
+    padding: 20px;
+    width: 380px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.info-section h3 {
+    margin-top: 10px;
+    color: #333;
+}
+
+.info-section ul {
+    padding-left: 20px;
+}
+</style>
 </head>
 
 <body>
 
-<div class="container">
-    <h2>Mechanism Identifier</h2>
+<div class="main-wrapper">
 
-    <div class="input-box">
-        <input type="number" placeholder="Link 1 Length" id="l1">
+    <!-- Main App -->
+    <div class="container">
+        <h2>Mechanism Identifier</h2>
+
+        <div class="row">
+            <label>Link 1:</label>
+            <input type="number" id="l1">
+        </div>
+
+        <div class="row">
+            <label>Link 2:</label>
+            <input type="number" id="l2">
+        </div>
+
+        <div class="row">
+            <label>Link 3:</label>
+            <input type="number" id="l3">
+        </div>
+
+        <div class="row">
+            <label>Link 4:</label>
+            <input type="number" id="l4">
+        </div>
+
+        <div class="row">
+            <label>Fixed Link:</label>
+            <select id="fixed">
+                <option value="">Select</option>
+                <option value="1">Link 1</option>
+                <option value="2">Link 2</option>
+                <option value="3">Link 3</option>
+                <option value="4">Link 4</option>
+            </select>
+        </div>
+
+        <button onclick="identify()">Identify Mechanism</button>
+
+        <div class="result" id="output"></div>
     </div>
 
-    <div class="input-box">
-        <input type="number" placeholder="Link 2 Length" id="l2">
+    <!-- 👇 NEW SECTION -->
+    <div class="info-section">
+        <h2>Project Information</h2>
+
+        <h3>👥 Group Members</h3>
+        <ul>
+            <li>Prachi Navale</li>
+            <li>Randhavne Gauri</li>
+            <li>Shaikh Tamanna</li>
+            <li>Sawant Pranali</li>
+        </ul>
+
+        <h3>🎓 Project Guide</h3>
+        <p>Prof. J. B. Ashtekar</p>
+        
+        <h3>🏢 Head of Department</h3>
+        <p>Dr. P. M. Patare</p>
+
+        <h3>🏫 College</h3>
+        <p>Sanjivani Group of Institutes, Kopargaon</p>
     </div>
 
-    <div class="input-box">
-        <input type="number" placeholder="Link 3 Length" id="l3">
-    </div>
-
-    <div class="input-box">
-        <input type="number" placeholder="Link 4 Length" id="l4">
-    </div>
-
-    <div class="input-box">
-        <select id="fixed">
-            <option value="">Select Fixed Link</option>
-            <option value="1">Link 1</option>
-            <option value="2">Link 2</option>
-            <option value="3">Link 3</option>
-            <option value="4">Link 4</option>
-        </select>
-    </div>
-
-    <button onclick="identify()">Identify</button>
-
-    <div class="result" id="output"></div>
 </div>
 
 <script>
@@ -142,7 +211,6 @@ function identify() {
         } else {
             result = "Double Rocker Mechanism";
         }
-
     } else {
         result = "Double Rocker Mechanism (Non-Grashof)";
     }
